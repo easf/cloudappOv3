@@ -1,0 +1,9 @@
+{
+ "scripts": {
+  "start": "node index.js"
+},
+"main": "index.js",
+"dependencies": {
+  "formidable" : "1.0.17"
+}	
+}

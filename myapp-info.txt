@@ -1,0 +1,9 @@
+Openshift
+    myapp
+    Permanently added 'myapp-mddcloud.rhcloud.com,54.173.60.200' (RSA) to the list of known hosts.
+    RSA key fingerprint is SHA256:FeJCkIUL7D41FMGNtM5NYM4XoboxZGYEqH0WcAmOX+I
+      
+      URL:        http://myapp-mddcloud.rhcloud.com/                                                                          
+      SSH to:     57d999a589f5cf201f000015@myapp-mddcloud.rhcloud.com                                                         
+      Git remote: ssh://57d999a589f5cf201f000015@myapp-mddcloud.rhcloud.com/~/git/myapp.git/                                  
+      Cloned to:  C:/Users/esanc/myapp
