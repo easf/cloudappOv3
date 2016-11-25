@@ -28,10 +28,10 @@ function upload( response, request ) {
     console.log("about to parse");
     form.parse( request, function( error, fields, files ) {
         console.log("parsing done");
-        fs.rename( files.file.path, __dirname + "/tmp/uca.jpg", function(error){
+        fs.rename( files.upload.path, "tmp/uca.jpg", function(error){
             if(error){
-                fs.unlink(__dirname + "/tmp/uca.jpg");
-                fs.rename(files.file.path, __dirname + "/tmp/uca.jpg");
+                fs.unlink("tmp/uca.jpg");
+                fs.rename(files.upload.path, "tmp/uca.jpg");
             }
         });
 
@@ -46,7 +46,7 @@ function upload( response, request ) {
 function show( response ) {
     console.log( "Request handler 'show' was called." );
     response.writeHead( 200, {"Content-Type": "image/jpg"} );
-    fs.createReadStream(__dirname + "/tmp/uca.jpg").pipe(response);
+    fs.createReadStream("tmp/uca.jpg").pipe(response);
 }
 
 exports.start = start;
