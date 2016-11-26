@@ -28,10 +28,10 @@ function upload( response, request ) {
     console.log("about to parse");
     form.parse( request, function( error, fields, files ) {
         console.log("parsing done");
-        mv( files.upload.path, "tmp/uca.jpg", function(error){
+        mv( files.file.path, "tmp/uca.jpg", function(error){
             if(error){
                 fs.unlink("tmp/uca.jpg");
-                mv(files.upload.path, "tmp/uca.jpg");
+                mv(files.file.path, "tmp/uca.jpg");
             }
         });
 
