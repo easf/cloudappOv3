@@ -1,5 +1,5 @@
 var exec = require("child_process").exec;
-var querystring = require("querystring"), fs = require("fs"), formidable = require("formidable");
+var querystring = require("querystring"), fs = require("fs"), formidable = require("formidable"), mv =require("mv");
 
 function start ( response ) {
     console.log ( "Request handler 'start' was called." );    
@@ -28,10 +28,10 @@ function upload( response, request ) {
     console.log("about to parse");
     form.parse( request, function( error, fields, files ) {
         console.log("parsing done");
-        fs.rename( files.upload.path, "tmp/uca.jpg", function(error){
+        mv( files.upload.path, "tmp/uca.jpg", function(error){
             if(error){
                 fs.unlink("tmp/uca.jpg");
-                fs.rename(files.upload.path, "tmp/uca.jpg");
+                mv(files.upload.path, "tmp/uca.jpg");
             }
         });
 

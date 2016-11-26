@@ -1,9 +1,10 @@
 {
- "scripts": {
-  "start": "node index.js"
-},
-"main": "index.js",
-"dependencies": {
-  "formidable" : "1.0.17"
-}	
+  "scripts": {
+    "start": "node index.js"
+  },
+  "main": "index.js",
+  "dependencies": {
+    "formidable": "1.0.17",
+    "mv": "^2.1.1"
+  }
 }
