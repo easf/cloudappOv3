@@ -1,17 +1,25 @@
-var http = require("http");
-var url = require("url");
 
-function start(route, handle, server_port, server_ip_address) {
-    function onRequest ( request, response ) {
-        var pathname = url.parse(request.url).pathname;
-        var postData = "";
-        console.log("Request for " + pathname + " received.");
-        route( handle, pathname, response, request );
-    }
+var express = require("express");
+var router = require("./router");
 
-http.createServer( onRequest ).listen(server_port, server_ip_address);
-console.log("Server has started. Port: " + server_port + ". IP: " + server_ip_address);
+
+function start(server_port, server_ip_address) {
+	
+    if (typeof server_ip_address === "undefined") {
+        //  Log errors on OpenShift but continue w/ 127.0.0.1 - this
+        //  allows us to run/test the app locally.
+        console.warn('No OPENSHIFT_NODEJS_IP var, using 127.0.0.1');
+    };
+
+    var app = express();
+	//router.route();
+	app.use("/", router);
+
+	app.listen( server_port, server_ip_address, function() {
+	            console.log('%s: Node server started on %s:%d ...',
+	                        Date(Date.now() ), server_port, server_ip_address);
+	        });	
 }
 
-exports.start = start;
 
+exports.start = start;

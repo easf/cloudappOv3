@@ -1,13 +1,30 @@
-function route( handle, pathname, response, request ) {
-    console.log("About to route a request for " + pathname);
-    if ( typeof handle[pathname] === 'function') {
-        handle[pathname]( response, request );
-    } else {
-        console.log("No request handler found for " + pathname);
-        response.writeHead( 404, {"Content-Type": "text/plain"} );
-        response.write("404 Not found");
-        response.end();
-    }
-}
+var express = require("express");
+var router = express.Router();
+var requestHandlers = require("./requestHandlers");
 
-exports.route = route;
+//function route() {
+	
+	// var handle = {};
+	// handle["/"] = requestHandlers.start;
+	// handle["/start"] = requestHandlers.start;
+	// handle["/upload"] = requestHandlers.upload;
+	// handle["/show"] = requestHandlers.show;
+
+	router.route("/")
+	  .get(requestHandlers.start);
+	
+	router.get('/start', requestHandlers.start);
+	router.post('/upload', requestHandlers.upload);
+	router.get('/show', requestHandlers.show);
+	
+	// for (var path in handle) {
+	//     if (path === '/upload'){
+	//     	app.post(path, handle[path]);
+	//     }else{
+	//     	app.get(path, handle[path]);
+	//     } 
+	// }
+//}
+
+//exports.route = route;
+module.exports = router;

@@ -1,7 +1,7 @@
 var exec = require("child_process").exec;
 var querystring = require("querystring"), fs = require("fs"), formidable = require("formidable"), mv =require("mv");
 
-function start ( response ) {
+function start ( req, res ) {
     console.log ( "Request handler 'start' was called." );    
     var body = '<html>'+
      '<head>'+
@@ -16,17 +16,17 @@ function start ( response ) {
      '</form>'+
      '</body>'+
      '</html>';
-    response.writeHead( 200, { "Content-Type": "text/html" } );
-    response.write(body);
-    response.end();        
+    res.writeHead( 200, { "Content-Type": "text/html" } );
+    res.write(body);
+    res.end();        
 }
 
-function upload( response, request ) {
+function upload(  req, res  ) {
     console.log ( "Request handler 'upload' was called." );
 
     var form = new formidable.IncomingForm();
     console.log("about to parse");
-    form.parse( request, function( error, fields, files ) {
+    form.parse( req, function( error, fields, files ) {
         console.log("parsing done");
         mv(files.upload.path, "tmp/uca.jpg", function(error){
             if(error){
@@ -35,18 +35,18 @@ function upload( response, request ) {
             }
         });
 
-        response.writeHead( 200, { "Content-Type": "text/html" } );
-        response.write("received image:<br/>");
-        response.write("<img src='/show' />");
-        response.end();
+        res.writeHead( 200 );
+        //res.write("received image:<br/>");
+        //res.write("<img src='/show' />");
+        res.end();
 
-    });
+    })
 }
 
-function show( response ) {
+function show(  req, res  ) {
     console.log( "Request handler 'show' was called." );
-    response.writeHead( 200, {"Content-Type": "image/jpg"} );
-    fs.createReadStream("tmp/uca.jpg").pipe(response);
+    res.writeHead( 200, {"Content-Type": "image/jpg"} );
+    fs.createReadStream("tmp/uca.jpg").pipe(res);
 }
 
 exports.start = start;
