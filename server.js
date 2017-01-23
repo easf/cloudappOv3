@@ -16,10 +16,11 @@ function start(server_port, server_ip_address) {
 	app.use("/", router);
 
 	app.listen( server_port, function () {
-  								var address = this.address();
-                  if (address === null){
-                     return server_ip_address; 
-                  }
+                    try {
+                      var address = this.address();
+                    } catch (err) {
+                      return server_ip_address; 
+                    }
   								console.log('%s worker %d running on http://%s:%d',
     							APPNAME, process.pid, address.address, address.port);
 		}, function() {
