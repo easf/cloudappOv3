@@ -14,19 +14,22 @@ function start(server_port, server_ip_address) {
     var app = express();
 	//router.route();
 	app.use("/", router);
-
-	app.listen( server_port, function () {
-                    try {
-                      var address = this.address();
-                    } catch (err) {
-                      return server_ip_address; 
-                    }
-  								console.log('%s worker %d running on http://%s:%d',
-    							APPNAME, process.pid, address.address, address.port);
-		}, function() {
-	            console.log('%s: Node server started on %s:%d ...',
-	                        Date(Date.now() ), server_port, server_ip_address);
-	        });	
+  if ( server_ip_address === "127.0.0.1"){
+    app.listen( server_port, function () {
+                    var address = this.address();
+                    console.log('%s worker %d running on http://%s:%d',
+                    APPNAME, process.pid, address.address, address.port);
+      }, function() {
+                console.log('%s: Node server started on %s:%d ...',
+                            Date(Date.now() ), server_port, server_ip_address);
+            });    
+  }else{
+    app.listen( server_port, server_ip_address, function() {
+                console.log('%s: Node server started on %s:%d ...',
+                            Date(Date.now() ), server_port, server_ip_address);
+            });    
+  }
+	
 }
 
 
