@@ -17,7 +17,9 @@ function start(server_port, server_ip_address) {
 
 	app.listen( server_port, function () {
   								var address = this.address();
-                  address.address = address.address || server_ip_address;
+                  if (address === null){
+                     return server_ip_address; 
+                  }
   								console.log('%s worker %d running on http://%s:%d',
     							APPNAME, process.pid, address.address, address.port);
 		}, function() {
