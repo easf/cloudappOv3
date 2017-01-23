@@ -15,17 +15,13 @@ function start(server_port, server_ip_address) {
 	//router.route();
 	app.use("/", router);
 //  if ( server_ip_address === "127.0.0.1"){
-  app.listen( server_port, function() {
+  app.listen( server_port, server_ip_address, function() {
                 console.log('%s: Node server started on %s:%s ...',
                             Date(Date.now() ), app.port, app.address);
-                console.log(server_ip_address)
+                 console.log(server_ip_address);
             }); 
 
-  if (typeof  app.address === "undefined" ){
-    app.set('address', server_ip_address);
-    console.log("yeahhhhh");
-    console.log(app.address);
-  };
+
  // }else{
   //   app.listen( server_port, server_ip_address, function() {
   //               console.log('%s: Node server started on %s:%d ...',
