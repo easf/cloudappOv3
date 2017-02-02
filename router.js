@@ -1,30 +1,22 @@
+/**
+ *	Routing file, matching path with request handlers
+ */
+
 var express = require("express");
 var router = express.Router();
 var requestHandlers = require("./requestHandlers");
 
-//function route() {
-	
-	// var handle = {};
-	// handle["/"] = requestHandlers.start;
-	// handle["/start"] = requestHandlers.start;
-	// handle["/upload"] = requestHandlers.upload;
-	// handle["/show"] = requestHandlers.show;
 
-	router.route("/")
-	  .get(requestHandlers.start);
-	
-	router.get('/start', requestHandlers.start);
-	router.post('/upload', requestHandlers.upload);
-	router.get('/show', requestHandlers.show);
-	
-	// for (var path in handle) {
-	//     if (path === '/upload'){
-	//     	app.post(path, handle[path]);
-	//     }else{
-	//     	app.get(path, handle[path]);
-	//     } 
-	// }
-//}
+router.route("/")
+  .get(requestHandlers.start);
 
-//exports.route = route;
+router.get('/start', requestHandlers.start);
+router.post('/upload/:fileId', requestHandlers.upload);
+router.get('/show/:fileId', requestHandlers.show);
+
+router.route('/data')
+	.get(requestHandlers.data)
+	.post(requestHandlers.dataPost);
+	
+
 module.exports = router;

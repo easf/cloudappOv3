@@ -1,32 +1,48 @@
+/**
+ *  Setting and running the server
+ */
 
 var express = require("express");
 var router = require("./router");
-
+var APPNAME = require('./package.json').name;
+var bodyParser = require('body-parser');
 
 function start(server_port, server_ip_address) {
 
   var app = express();
-	//router.route();
-	app.use("/", router);
+  
+  /**
+   *  Support encoding.
+   */
 
+  app.use(bodyParser.json()); //*** Support json encoded bodies.  
+  //app.use(bodyParser.urlencoded({ extended: true })); // support url encoded.
 
-  if (typeof server_ip_address === "undefined") {
-        //  Log errors on OpenShift but continue w/ 127.0.0.1 - this
-        //  allows us to run/test the app locally.
-        //console.warn('No OPENSHIFT_NODEJS_IP var, using 127.0.0.1');
-        app.listen (server_port, function () {
-            var address = this.address()
-            console.log('%s worker %d running on http://%s:%d', APPNAME, process.pid, address.address, address.port)
-          });
+  /**
+   *  Adding routes.
+   */
+  app.use("/", router);
+  
+  /*
+   * Adding port, ip and running.
+   */
+   
+  if (typeof server_ip_address === "undefined") { //*** For Localhost or Amazon Web Service Beanstalk
 
-    } else {
+      app.listen (server_port, function () { 
+          var address = this.address()
+          console.log('%s worker %d running on http://%s:%d', APPNAME, process.pid, address.address, address.port)
+        });
+
+    } else { //*** For Openshift
+
       app.listen( server_port, server_ip_address, function() {
                 console.log('%s: Node server started on %s:%d ...',
                             Date(Date.now() ), server_port, server_ip_address);
       });
-  }
-	
-}
 
+  }
+
+}
 
 exports.start = start;

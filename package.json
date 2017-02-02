@@ -2,10 +2,14 @@
   "scripts": {
     "start": "node index.js"
   },
+  "name": "cloudapp",
+  "version": "0.0.1",
   "main": "index.js",
   "dependencies": {
+    "body-parser": "^1.16.0",
     "express": "^4.14.0",
     "formidable": "1.0.17",
-    "mv": "^2.1.1"
+    "mv": "^2.1.1",
+    "s3": "^4.4.0"
   }
 }

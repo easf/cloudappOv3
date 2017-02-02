@@ -1,13 +1,19 @@
+#!/usr/bin/env node
 
-var server = require("./server");
-var config = require('./config');
+/**
+ *   Main file
+ */
 
+var config = require('./config'); //*** Importing configurations dict.
+var server = require("./server"); //*** Wiring with server implementation.
 
 var ServerEnv = function(){
-	/**
-		Some server environment settings.
-	*/
-	self = this;
+    
+    /**
+     *  Some server environment settings.
+     */
+
+    self = this;
 
     self.terminator = function(sig){
         if (typeof sig === "string") {
@@ -34,12 +40,13 @@ var ServerEnv = function(){
     };
 
      /**
-     *  Initializes the some server environment settings.
-     */
+      *  Initializes the some server environment settings.
+      */
     self.initialize = function() {
         self.setupTerminationHandlers();      
     };
 }
+
 
 /**
  *  main():  Main code.
@@ -49,6 +56,3 @@ var serverEnv = new ServerEnv();
 serverEnv.initialize();
 
 server.start( config.server_port, config.server_ip_address);
-
-
-
