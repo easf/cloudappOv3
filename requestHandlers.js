@@ -50,7 +50,7 @@ function upload(  req, res  ) {
     var form = new formidable.IncomingForm();
     console.log("about to parse");
     var file = req.params["fileId"];
-
+    
     form.parse( req, function( error, fields, files ) {
         console.log("parsing done");
         var newPath;
@@ -65,6 +65,7 @@ function upload(  req, res  ) {
             default:
                 newPath = "tmp/file";
         }
+        console.log(fields)
 
         mv(files.upload.path, newPath, function(error){
             if(error){
@@ -85,7 +86,8 @@ function show(  req, res  ) {
     res.writeHead( 200, {"Content-Type": "image/jpg"} );
     var file = req.params["fileId"] 
     var fileToDownload;
-
+    console.log(req.body)
+    
     switch(file) {
         case "uca.jpg":
             fileToDownload = "tmp/uca.jpg";
@@ -107,10 +109,10 @@ function data(req, res){
     
     console.log(req.query); 
 
-    var data = '{"0": "Universidad Católica", "1":   "Nuestra Señora de la Asunciónhh  ", "2": [1,2,3]}'
-
+    var data = '{"0": "Universidad Católica", "1":   "Nuestra Señora de la Asunciónhh  ", "2": [1,2,3]}';
+    
     res.writeHead(200, {"Content-Type": "application/json; charset=utf-8"});
-    res.write(JSON.stringify(data));
+    res.write(JSON.parse(JSON.stringify(data)));
     res.end();
 
 }

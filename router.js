@@ -12,7 +12,7 @@ router.route("/")
 
 router.get('/start', requestHandlers.start);
 router.post('/upload/:fileId', requestHandlers.upload);
-router.get('/show/:fileId', requestHandlers.show);
+router.post('/show/:fileId', requestHandlers.show);
 
 router.route('/data')
 	.get(requestHandlers.data)
