@@ -3,27 +3,6 @@ var querystring = require("querystring"), fs = require("fs"), formidable = requi
 var s3 = require('s3');
 
 
-
-function getS3Client(){
-    var client = s3.createClient({
-      maxAsyncS3: 20,     // this is the default
-      s3RetryCount: 3,    // this is the default
-      s3RetryDelay: 1000, // this is the default
-      multipartUploadThreshold: 20971520, // this is the default (20 MB)
-      multipartUploadSize: 15728640, // this is the default (15 MB)
-      s3Options: {
-        accessKeyId: "AKIAISO4QZZKMLTQD4LQ",
-        secretAccessKey: "pkfK9bygxYS9617K7hUhkrmkbbCafvfEF2Gh1B7I",
-        region: "us-west-1",
-        // endpoint: 's3.yourdomain.com',
-        // sslEnabled: false
-        // any other options are passed to new AWS.S3()
-        // See: http://docs.aws.amazon.com/AWSJavaScriptSDK/latest/AWS/Config.html#constructor-property
-      },
-    });
-    return client;
-}
-
 function start ( req, res ) {
     console.log ( "Request handler 'start' was called." );    
     var body = '<html>'+
@@ -32,11 +11,10 @@ function start ( req, res ) {
      'charset=UTF-8" />'+
      '</head>'+
      '<body>'+
-     '<form action="/upload" enctype="multipart/form-data"' +
-     'method="post">'+
-     '<input type="file" name="upload" multiple="multiple">'+
-     '<input type="submit" value="Upload file" />'+
-     '</form>'+
+     '<h1>MDD+ Mobile Cloud Server</h1>'+
+     '<h2>Welcome!</h2>' +
+     '<h3>You can interchange data with this server from MDD+ mobile applications: iOS and Android</h3>'+
+     '<h3>DEI 2017, All Rights Reserved</h3>' +
      '</body>'+
      '</html>';
     res.writeHead( 200, { "Content-Type": "text/html" } );
@@ -62,6 +40,9 @@ function upload(  req, res  ) {
             case "olimpia.jpg":
                 newPath = "tmp/olimpia.jpg";
                 break;
+            case "file.pdf":
+                newPath = "tmp/file.pdf";
+                break;
             default:
                 newPath = "tmp/file";
         }
@@ -80,13 +61,13 @@ function upload(  req, res  ) {
     });
 }
 
-function show(  req, res  ) {
-    console.log( "Request handler 'show' was called." );
+function download(  req, res  ) {
+    console.log( "Request handler 'download' was called." );
 
     res.writeHead( 200, {"Content-Type": "image/jpg"} );
     var file = req.params["fileId"] 
     var fileToDownload;
-    console.log(req.body)
+    console.log(req.query)
     
     switch(file) {
         case "uca.jpg":
@@ -104,32 +85,60 @@ function show(  req, res  ) {
 }
 
 
-function data(req, res){
+function dataGet(req, res){
     console.log("Request handler 'data' was called.");
     
-    console.log(req.query); 
+    console.log(req.query);     
+    var data = '{"0": "Universidad Católica", "1":   "Nuestra Señora de la Asunciónnn  ", "2": [1,2,3]}';
 
-    var data = '{"0": "Universidad Católica", "1":   "Nuestra Señora de la Asunciónhh  ", "2": [1,2,3]}';
-    
     res.writeHead(200, {"Content-Type": "application/json; charset=utf-8"});
     res.write(JSON.parse(JSON.stringify(data)));
     res.end();
-
 }
 
 function dataPost(req, res){
-    console.log("Request handler 'data' was called.");
+    console.log("Request handler 'data post' was called.");
     
     console.log(req.body);
 
     res.writeHead(200, {"Content-Type": "application/json; charset=utf-8"});
-    res.write(JSON.stringify('{"0":"Uiversidad Católica", "1":"Nuestra Señora de la Asunciónhh  "}'));
-    res.end();
 
+    var data = '{"0": "Universidad Católica", "1":   "Nuestra Señora de la Asunciónhh  ", "2": [1,2,3]}';
+
+    res.write(JSON.parse(JSON.stringify(data)));
+    res.end();
+}
+
+function dataPut(req, res){
+    console.log("Request handler 'data put' was called.");
+    
+    console.log(req.body);
+    console.log(req.query);
+    res.writeHead(200, {"Content-Type": "application/json; charset=utf-8"});
+
+    var data = '{"0": "Universidad Católica", "1":   "Nuestra Señora de la Asunciónhh  ", "2": [1,2,3]}';
+
+    res.write(JSON.parse(JSON.stringify(data)));
+    res.end();
+}
+
+function dataDelete(req, res){
+    console.log("Request handler 'data delete' was called.");
+    
+    console.log(req.query);
+
+    res.writeHead(200, {"Content-Type": "application/json; charset=utf-8"});
+
+    var data = '{"0": "Universidad Católica", "1":   "Nuestra Señora de la Asunciónhh  ", "2": [1,2,3]}';
+
+    res.write(JSON.parse(JSON.stringify(data)));
+    res.end();
 }
 
 exports.start = start;
 exports.upload = upload;
-exports.show = show;
-exports.data = data;
+exports.download = download;
+exports.dataGet = dataGet;
 exports.dataPost = dataPost;
+exports.dataPut = dataPut;
+exports.dataDelete = dataDelete;

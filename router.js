@@ -11,12 +11,18 @@ router.route("/")
   .get(requestHandlers.start);
 
 router.get('/start', requestHandlers.start);
-router.post('/upload/:fileId', requestHandlers.upload);
-router.post('/show/:fileId', requestHandlers.show);
 
+router.post('/upload/:fileId', requestHandlers.upload);
+
+router.route('/download/:fileId')
+  .get(requestHandlers.download)
+ 
+  
 router.route('/data')
-	.get(requestHandlers.data)
-	.post(requestHandlers.dataPost);
+	.get(requestHandlers.dataGet)
+	.post(requestHandlers.dataPost)
+	.put(requestHandlers.dataPut)
+	.delete(requestHandlers.dataDelete);
 	
 
 module.exports = router;
