@@ -86,7 +86,7 @@ function download(  req, res  ) {
 
     res.writeHead( 200, contentType );
     fs.createReadStream(fileToDownload).pipe(res);
-    res.end();
+    
 }
 
 
