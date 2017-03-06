@@ -21,4 +21,3 @@ config.server_ip_address = process.env.OPENSHIFT_NODEJS_IP;
 	Make dict "config" accesible
 */
 module.exports = config;
-

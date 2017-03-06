@@ -24,7 +24,8 @@ function start ( req, res ) {
 
 function upload(  req, res  ) {
     console.log ( "Request handler 'upload' was called." );
-
+    console.log (req.body) // to print call parameters 
+    
     var form = new formidable.IncomingForm();
     console.log("about to parse");
     var file = req.params["fileId"];
@@ -63,33 +64,36 @@ function upload(  req, res  ) {
 
 function download(  req, res  ) {
     console.log( "Request handler 'download' was called." );
-
-    res.writeHead( 200, {"Content-Type": "image/jpg"} );
+    console.log(req.query) // to print call parameters 
+    
     var file = req.params["fileId"] 
     var fileToDownload;
-    console.log(req.query)
+    var contentType;
     
     switch(file) {
         case "uca.jpg":
             fileToDownload = "tmp/uca.jpg";
+            contentType = {"Content-Type": "image/jpg"};
             break;
         case "olimpia.jpg":
             fileToDownload = "tmp/olimpia.jpg";
+            contentType = {"Content-Type": "image/jpg"};
             break;
         default:
             fileToDownload = "tmp/file";
+            contentType = {"Content-Type": "image/plain"};
     }
 
+    res.writeHead( 200, contentType );
     fs.createReadStream(fileToDownload).pipe(res);
-    res.end();
 }
 
 
 function dataGet(req, res){
-    console.log("Request handler 'data' was called.");
-    
-    console.log(req.query);     
-    var data = '{"0": "Universidad Católica", "1":   "Nuestra Señora de la Asunciónnn  ", "2": [1,2,3]}';
+    console.log("Request handler 'data get' was called.");
+    console.log(req.query);    // to print call parameters 
+
+    var data = '{"info": "data get" , "0": "MDD+ Mobile Cloud", "1":   "DEI - UC - 2017", "2": [79,90,02]}';
 
     res.writeHead(200, {"Content-Type": "application/json; charset=utf-8"});
     res.write(JSON.parse(JSON.stringify(data)));
@@ -98,25 +102,23 @@ function dataGet(req, res){
 
 function dataPost(req, res){
     console.log("Request handler 'data post' was called.");
-    
-    console.log(req.body);
+    console.log(req.body); // to print call parameters 
 
     res.writeHead(200, {"Content-Type": "application/json; charset=utf-8"});
 
-    var data = '{"0": "Universidad Católica", "1":   "Nuestra Señora de la Asunciónhh  ", "2": [1,2,3]}';
+    var data = '{"info": "data post" , "0": "MDD+ Mobile Cloud", "1":   "DEI - UC - 2017", "2": [79,90,02]}';
 
     res.write(JSON.parse(JSON.stringify(data)));
     res.end();
 }
 
 function dataPut(req, res){
-    console.log("Request handler 'data put' was called.");
-    
-    console.log(req.body);
-    console.log(req.query);
+    console.log("Request handler 'data put' was called.");    
+    console.log(req.body); // to print call parameters 
+
     res.writeHead(200, {"Content-Type": "application/json; charset=utf-8"});
 
-    var data = '{"0": "Universidad Católica", "1":   "Nuestra Señora de la Asunciónhh  ", "2": [1,2,3]}';
+    var data = '{"info": "data put" , "0": "MDD+ Mobile Cloud", "1":   "DEI - UC - 2017", "2": [79,90,02]}';
 
     res.write(JSON.parse(JSON.stringify(data)));
     res.end();
@@ -124,12 +126,11 @@ function dataPut(req, res){
 
 function dataDelete(req, res){
     console.log("Request handler 'data delete' was called.");
-    
-    console.log(req.query);
+    console.log(req.query); // to print call parameters 
 
     res.writeHead(200, {"Content-Type": "application/json; charset=utf-8"});
 
-    var data = '{"0": "Universidad Católica", "1":   "Nuestra Señora de la Asunciónhh  ", "2": [1,2,3]}';
+    var data = '{"info": "data delete" , "0": "MDD+ Mobile Cloud", "1":   "DEI - UC - 2017", "2": [79,90,02]}';
 
     res.write(JSON.parse(JSON.stringify(data)));
     res.end();
