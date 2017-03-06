@@ -24,7 +24,7 @@ function start ( req, res ) {
 
 function upload(  req, res  ) {
     console.log ( "Request handler 'upload' was called." );
-    console.log (req.body) // to print call parameters 
+    console.log (req.body); // to print call parameters 
 
     var form = new formidable.IncomingForm();
     console.log("about to parse");
@@ -47,7 +47,7 @@ function upload(  req, res  ) {
             default:
                 newPath = "tmp/file";
         }
-        console.log(fields)
+        
 
         mv(files.upload.path, newPath, function(error){
             if(error){
@@ -64,11 +64,11 @@ function upload(  req, res  ) {
 
 function download(  req, res  ) {
     console.log( "Request handler 'download' was called." );
-    console.log(req.query) // to print call parameters 
+    console.log(req.query); // to print call parameters 
     
-    var file = req.params["fileId"] 
-    var fileToDownload;
-    var contentType;
+    var file = req.params["fileId"];
+    var fileToDownload = "tmp/uca.jpg";
+    var contentType = {"Content-Type": "image/jpg"};
     
     switch(file) {
         case "uca.jpg":
@@ -82,11 +82,21 @@ function download(  req, res  ) {
         default:
             fileToDownload = "tmp/file";
             contentType = {"Content-Type": "image/plain"};
+            break;
     }
+    var fileAbs = __dirname + "/" + fileToDownload;
+    //res.download(file); // Set disposition and send it.
+    //res.writeHead( 200, contentType );
+    res.download(fileAbs, file, function(err){
+    if (err) {
+        console.log("Download error!");
+    } else {
+        console.log("Download success!");
+    }
+    });
 
-    res.writeHead( 200, contentType );
-    fs.createReadStream(fileToDownload).pipe(res);
-    
+    //fs.createReadStream(fileToDownload).pipe(res);
+    //res.end();
 }
 
 
