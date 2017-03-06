@@ -25,7 +25,7 @@ function start ( req, res ) {
 function upload(  req, res  ) {
     console.log ( "Request handler 'upload' was called." );
     console.log (req.body) // to print call parameters 
-    
+
     var form = new formidable.IncomingForm();
     console.log("about to parse");
     var file = req.params["fileId"];
@@ -86,6 +86,7 @@ function download(  req, res  ) {
 
     res.writeHead( 200, contentType );
     fs.createReadStream(fileToDownload).pipe(res);
+    res.end();
 }
 
 
