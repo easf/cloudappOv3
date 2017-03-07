@@ -48,7 +48,6 @@ function upload(  req, res  ) {
                 newPath = "tmp/file";
         }
         
-
         mv(files.upload.path, newPath, function(error){
             if(error){
                 fs.unlink(newLocation);

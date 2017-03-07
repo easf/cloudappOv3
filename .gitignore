@@ -1,7 +1,5 @@
 # node modules directory
 node_modules
-# temporal directory
-tmp
 # ocultos
 .DS_Store
 #sublime project
