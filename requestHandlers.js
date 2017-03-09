@@ -24,7 +24,7 @@ function start ( req, res ) {
 
 function upload(  req, res  ) {
     console.log ( "Request handler 'upload' was called." );
-    console.log (req.body); // to print call parameters 
+    
 
     var form = new formidable.IncomingForm();
     console.log("about to parse");
@@ -32,6 +32,7 @@ function upload(  req, res  ) {
     
     form.parse( req, function( error, fields, files ) {
         console.log("parsing done");
+        console.log (fields); // to print call parameters 
         var newPath;
         
         switch(file) {
@@ -116,7 +117,7 @@ function dataPost(req, res){
 
     res.writeHead(200, {"Content-Type": "application/json; charset=utf-8"});
 
-    var data = '{"info": "data post" , "0": "MDDPlus Mobile Cloud", "1":"DEI - UC - 2017", "2": ["79","90","02"]}';
+    var data = '{"info": "data post" , "0": "MDDPlus Mobile Cloud", "1":"DEI - UC - 2017", "2":["79","90","02"]}';
 
     res.write(JSON.parse(JSON.stringify(data)));
     res.end();
