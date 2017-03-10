@@ -2,7 +2,7 @@ var exec = require("child_process").exec;
 var querystring = require("querystring"), fs = require("fs"), formidable = require("formidable"), mv =require("mv");
 var s3 = require('s3');
 
-var RESPONSE_LENGTH = 10;
+var RESPONSE_LENGTH = 5;
 var APP_NAME = "Generic ";
 var ROW_INFO = "row: "
 
@@ -109,17 +109,15 @@ function dataGet(req, res){
     res.writeHead(200, {"Content-Type": "application/json; charset=utf-8"});
 
     var data = {};
-    data["info"] = "Get call, Openshift Cloud";
+    data["info"] = "GET call, Openshift Cloud";
     //'{"info": "data get" , "0": "MDDPlus Mobile Cloud", "1": "DEI - UC - 2017", "2": ["79","90","02"]}';
     for (var i = RESPONSE_LENGTH - 1; i >= 0; i--) {
       data[ "id" + i.toString() ] = APP_NAME +  ROW_INFO + i.toString();
     }
-    data["from"] = ["MDDPlus", "SE", "IF", "DEI", "UC", "2017"];
+    data["by"] = ["MDDPlus", "DEI-UC", "2017"];
     
-    data = JSON.stringify(data);
-    //data = String(data);
-    //console.log(data.toString());
-    res.write(data);
+    
+    res.write(JSON.stringify(data));
     res.end();
 }
 
@@ -130,15 +128,15 @@ function dataPost(req, res){
     res.writeHead(200, {"Content-Type": "application/json; charset=utf-8"});
 
     var data = {};
-    data["info"] = "Post call, Openshift Cloud";
+    data["info"] = "POST call, Openshift Cloud";
     //'{"info": "data post" , "0": "MDDPlus Mobile Cloud", "1":   "DEI - UC - 2017", "2": ["79","90","02"]}';
     for (var i = RESPONSE_LENGTH - 1; i >= 0; i--) {
       data[ "id" + i.toString() ] = APP_NAME +  ROW_INFO + i.toString();
     }
-    data["by"] = ["MDDPlus", "SE", "IF", "DEI", "UC", "2017"]
+    data["by"] = ["MDDPlus", "DEI-UC", "2017"];
 
-    data = String(data);
-    res.write(JSON.parse(JSON.stringify(data)));
+
+    res.write(JSON.stringify(data));
     res.end();
 }
 
@@ -149,15 +147,14 @@ function dataPut(req, res){
     res.writeHead(200, {"Content-Type": "application/json; charset=utf-8"});
 
     var data = {};
-    data["info"] = "Put call, Openshift Cloud";
+    data["info"] = "PUT call, Openshift Cloud";
     //'{"info": "data put" , "0": "MDDPlus Mobile Cloud", "1":   "DEI - UC - 2017", "2": ["79","90","02"]}';
     for (var i = RESPONSE_LENGTH - 1; i >= 0; i--) {
       data[ "id" + i.toString() ] = APP_NAME +  ROW_INFO + i.toString();
     }
-    data["by"] = ["MDDPlus", "SE", "IF", "DEI", "UC", "2017"]
+    data["by"] = ["MDDPlus", "DEI-UC", "2017"];
 
-    data = String(data);
-    res.write(JSON.parse(JSON.stringify(data)));
+    res.write(JSON.stringify(data));
     res.end();
 }
 
@@ -168,15 +165,14 @@ function dataDelete(req, res){
     res.writeHead(200, {"Content-Type": "application/json; charset=utf-8"});
 
     var data = {};
-    data["info"] = "Put call, Openshift Cloud";
+    data["info"] = "DELETE call, Openshift Cloud";
     //'{"info": "data delete" , "0": "MDDPlus Mobile Cloud", "1":   "DEI - UC - 2017", "2": ["79","90","02"]}';
     for (var i = RESPONSE_LENGTH - 1; i >= 0; i--) {
       data[ "id" + i.toString() ] = APP_NAME +  ROW_INFO + i.toString();
     }
-    data["by"] = ["MDDPlus", "SE", "IF", "DEI", "UC", "2017"]
+    data["by"] = ["MDDPlus", "DEI-UC", "2017"];
 
-    data = String(data);
-    res.write(JSON.parse(JSON.stringify(data)));
+    res.write(JSON.stringify(data));
     res.end();
 }
 
