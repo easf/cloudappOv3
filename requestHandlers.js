@@ -116,8 +116,10 @@ function dataGet(req, res){
     }
     data["from"] = ["MDDPlus", "SE", "IF", "DEI", "UC", "2017"];
     
-    data = String(data);
-    res.write(JSON.parse(JSON.stringify(data)));
+    data = JSON.stringify(data);
+    //data = String(data);
+    //console.log(data.toString());
+    res.write(data);
     res.end();
 }
 
