@@ -101,35 +101,51 @@ function download(  req, res  ) {
 
 function dataGet(req, res){
     console.log("Request handler 'data get' was called.");
-    console.log(req.query);    // to print call parameters 
-
-    var data = '{"info":"data get", "0":"MDDPlus Mobile Cloud", "1":"DEI - UC - 2017", "2":["79","90","02"]}';
-    console.log(data);
-    console.log(JSON.parse(JSON.stringify(data)));
+    console.log(req.query);  // to print call parameters   
+    
     res.writeHead(200, {"Content-Type": "application/json; charset=utf-8"});
+
+    var data = {}
+    data["info"] = "Get call, Beanstalk AWS Cloud";
+    //'{"info": "data get" , "0": "MDDPlus Mobile Cloud", "1": "DEI - UC - 2017", "2": ["79","90","02"]}';
+    for (var i = RESPONSE_LENGTH - 1; i >= 0; i--) {
+      data[ "id" + i.toString() ] = APP_NAME +  ROW_INFO + i.toString();
+    }
+    data["from"] = ["MDDPlus", "SE", "IF", "DEI", "UC", "2017"]
     res.write(JSON.parse(JSON.stringify(data)));
     res.end();
 }
 
 function dataPost(req, res){
     console.log("Request handler 'data post' was called.");
-    console.log(req.body); // to print call parameters 
+    console.log(req.body); // to print call parameters
 
     res.writeHead(200, {"Content-Type": "application/json; charset=utf-8"});
 
-    var data = '{"info": "data post" , "0": "MDDPlus Mobile Cloud", "1":"DEI - UC - 2017", "2":["79","90","02"]}';
-
+    var data = {};
+    data["info"] = "Post call, Beanstalk AWS Cloud";
+    //'{"info": "data post" , "0": "MDDPlus Mobile Cloud", "1":   "DEI - UC - 2017", "2": ["79","90","02"]}';
+    for (var i = RESPONSE_LENGTH - 1; i >= 0; i--) {
+      data[ "id" + i.toString() ] = APP_NAME +  ROW_INFO + i.toString();
+    }
+    data["by"] = ["MDDPlus", "SE", "IF", "DEI", "UC", "2017"]
     res.write(JSON.parse(JSON.stringify(data)));
     res.end();
 }
 
 function dataPut(req, res){
-    console.log("Request handler 'data put' was called.");    
-    console.log(req.body); // to print call parameters 
-
+    console.log("Request handler 'data put' was called.");
+    console.log(req.body); // to print call parameters
+    
     res.writeHead(200, {"Content-Type": "application/json; charset=utf-8"});
 
-    var data = '{"info":"data put" , "0": "MDDPlus Mobile Cloud", "1":"DEI - UC - 2017", "2":["79","90","02"]}';
+    var data = {};
+    data["info"] = "Put call, Beanstalk AWS Cloud";
+    //'{"info": "data put" , "0": "MDDPlus Mobile Cloud", "1":   "DEI - UC - 2017", "2": ["79","90","02"]}';
+    for (var i = RESPONSE_LENGTH - 1; i >= 0; i--) {
+      data[ "id" + i.toString() ] = APP_NAME +  ROW_INFO + i.toString();
+    }
+    data["by"] = ["MDDPlus", "SE", "IF", "DEI", "UC", "2017"]
 
     res.write(JSON.parse(JSON.stringify(data)));
     res.end();
@@ -137,11 +153,17 @@ function dataPut(req, res){
 
 function dataDelete(req, res){
     console.log("Request handler 'data delete' was called.");
-    console.log(req.query); // to print call parameters 
+    console.log(req.query); // to print call parameters
 
     res.writeHead(200, {"Content-Type": "application/json; charset=utf-8"});
 
-    var data = '{"info": "data delete" , "0": "MDDPlus Mobile Cloud", "1":   "DEI - UC - 2017", "2": ["79","90","02"]}';
+    var data = {};
+    data["info"] = "Put call, Beanstalk AWS Cloud";
+    //'{"info": "data delete" , "0": "MDDPlus Mobile Cloud", "1":   "DEI - UC - 2017", "2": ["79","90","02"]}';
+    for (var i = RESPONSE_LENGTH - 1; i >= 0; i--) {
+      data[ "id" + i.toString() ] = APP_NAME +  ROW_INFO + i.toString();
+    }
+    data["by"] = ["MDDPlus", "SE", "IF", "DEI", "UC", "2017"]
 
     res.write(JSON.parse(JSON.stringify(data)));
     res.end();
