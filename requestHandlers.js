@@ -108,13 +108,15 @@ function dataGet(req, res){
     
     res.writeHead(200, {"Content-Type": "application/json; charset=utf-8"});
 
-    var data = {}
-    data["info"] = "Get call, Beanstalk AWS Cloud";
+    var data = {};
+    data["info"] = "Get call, Openshift Cloud";
     //'{"info": "data get" , "0": "MDDPlus Mobile Cloud", "1": "DEI - UC - 2017", "2": ["79","90","02"]}';
     for (var i = RESPONSE_LENGTH - 1; i >= 0; i--) {
       data[ "id" + i.toString() ] = APP_NAME +  ROW_INFO + i.toString();
     }
-    data["from"] = ["MDDPlus", "SE", "IF", "DEI", "UC", "2017"]
+    data["from"] = ["MDDPlus", "SE", "IF", "DEI", "UC", "2017"];
+    
+    data = String(data);
     res.write(JSON.parse(JSON.stringify(data)));
     res.end();
 }
@@ -126,12 +128,14 @@ function dataPost(req, res){
     res.writeHead(200, {"Content-Type": "application/json; charset=utf-8"});
 
     var data = {};
-    data["info"] = "Post call, Beanstalk AWS Cloud";
+    data["info"] = "Post call, Openshift Cloud";
     //'{"info": "data post" , "0": "MDDPlus Mobile Cloud", "1":   "DEI - UC - 2017", "2": ["79","90","02"]}';
     for (var i = RESPONSE_LENGTH - 1; i >= 0; i--) {
       data[ "id" + i.toString() ] = APP_NAME +  ROW_INFO + i.toString();
     }
     data["by"] = ["MDDPlus", "SE", "IF", "DEI", "UC", "2017"]
+
+    data = String(data);
     res.write(JSON.parse(JSON.stringify(data)));
     res.end();
 }
@@ -143,13 +147,14 @@ function dataPut(req, res){
     res.writeHead(200, {"Content-Type": "application/json; charset=utf-8"});
 
     var data = {};
-    data["info"] = "Put call, Beanstalk AWS Cloud";
+    data["info"] = "Put call, Openshift Cloud";
     //'{"info": "data put" , "0": "MDDPlus Mobile Cloud", "1":   "DEI - UC - 2017", "2": ["79","90","02"]}';
     for (var i = RESPONSE_LENGTH - 1; i >= 0; i--) {
       data[ "id" + i.toString() ] = APP_NAME +  ROW_INFO + i.toString();
     }
     data["by"] = ["MDDPlus", "SE", "IF", "DEI", "UC", "2017"]
 
+    data = String(data);
     res.write(JSON.parse(JSON.stringify(data)));
     res.end();
 }
@@ -161,13 +166,14 @@ function dataDelete(req, res){
     res.writeHead(200, {"Content-Type": "application/json; charset=utf-8"});
 
     var data = {};
-    data["info"] = "Put call, Beanstalk AWS Cloud";
+    data["info"] = "Put call, Openshift Cloud";
     //'{"info": "data delete" , "0": "MDDPlus Mobile Cloud", "1":   "DEI - UC - 2017", "2": ["79","90","02"]}';
     for (var i = RESPONSE_LENGTH - 1; i >= 0; i--) {
       data[ "id" + i.toString() ] = APP_NAME +  ROW_INFO + i.toString();
     }
     data["by"] = ["MDDPlus", "SE", "IF", "DEI", "UC", "2017"]
 
+    data = String(data);
     res.write(JSON.parse(JSON.stringify(data)));
     res.end();
 }
