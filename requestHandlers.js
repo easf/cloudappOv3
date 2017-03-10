@@ -2,6 +2,9 @@ var exec = require("child_process").exec;
 var querystring = require("querystring"), fs = require("fs"), formidable = require("formidable"), mv =require("mv");
 var s3 = require('s3');
 
+var RESPONSE_LENGTH = 10;
+var APP_NAME = "Generic ";
+var ROW_INFO = "row: "
 
 function start ( req, res ) {
     console.log ( "Request handler 'start' was called." );    
