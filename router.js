@@ -7,33 +7,31 @@ var router = express.Router();
 var requestHandlers = require("./requestHandlers");
 
 
-router.route(/products/providers)
+router.route("/")
+  .get(requestHandlers.start);
 
-	.get(requestHandlers.productsProvidersGet) 
+router.route("/products/providers")
+	.get(requestHandlers.productsProvidersGet);
 
 
-router.route(/products/images/:file)
+router.route("/products/images/:file")
 
 	.get(requestHandlers.productsImagesDownload) 
 
-	.post(requestHandlers.productsImagesUpload)
+	.post(requestHandlers.productsImagesUpload);
 
 
-router.route(/products/logos/:file)
+router.route("/products/logos/:file")
 
-	.get(requestHandlers.productsLogosLoadImage) 
-
-
-router.route(/products/)
-
-	.get(requestHandlers.productsGet) 
-
-	
-
-module.exports = router;
+	.get(requestHandlers.productsLogosLoadImage) ;
 
 
-router.route(/purchases/)
+router.route("/products/")
+
+	.get(requestHandlers.productsGet) ;
+
+
+router.route("/purchases/")
 
 	.delete(requestHandlers.purchasesDelete) 
 
@@ -41,11 +39,14 @@ router.route(/purchases/)
 
 	.post(requestHandlers.purchasesPost) 
 
-	.put(requestHandlers.purchasesPut) 
+	.put(requestHandlers.purchasesPut) ;
 
 
-router.route(/user/)
+router.route("/user/")
 
 	.get(requestHandlers.userGet) 
 
-	.put(requestHandlers.userPut) 
+	.put(requestHandlers.userPut) ;
+
+
+module.exports = router;
