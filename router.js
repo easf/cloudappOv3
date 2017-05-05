@@ -7,22 +7,45 @@ var router = express.Router();
 var requestHandlers = require("./requestHandlers");
 
 
-router.route("/")
-  .get(requestHandlers.start);
+router.route(/products/providers)
 
-router.get('/start', requestHandlers.start);
+	.get(requestHandlers.productsProvidersGet) 
 
-router.post('/upload/:fileId', requestHandlers.upload);
 
-router.route('/download/:fileId')
-  .get(requestHandlers.download)
- 
-  
-router.route('/data')
-	.get(requestHandlers.dataGet)
-	.post(requestHandlers.dataPost)
-	.put(requestHandlers.dataPut)
-	.delete(requestHandlers.dataDelete);
+router.route(/products/images/:file)
+
+	.get(requestHandlers.productsImagesDownload) 
+
+	.post(requestHandlers.productsImagesUpload)
+
+
+router.route(/products/logos/:file)
+
+	.get(requestHandlers.productsLogosLoadImage) 
+
+
+router.route(/products/)
+
+	.get(requestHandlers.productsGet) 
+
 	
 
 module.exports = router;
+
+
+router.route(/purchases/)
+
+	.delete(requestHandlers.purchasesDelete) 
+
+	.get(requestHandlers.purchasesGet) 
+
+	.post(requestHandlers.purchasesPost) 
+
+	.put(requestHandlers.purchasesPut) 
+
+
+router.route(/user/)
+
+	.get(requestHandlers.userGet) 
+
+	.put(requestHandlers.userPut) 

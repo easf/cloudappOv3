@@ -8,12 +8,12 @@ var config = require('./config'); //*** Importing configurations dict.
 var server = require("./server"); //*** Wiring with server implementation.
 
 var ServerEnv = function(){
-    
+	
     /**
      *  Some server environment settings.
-     */
+	 */
 
-    self = this;
+	self = this;
 
     self.terminator = function(sig){
         if (typeof sig === "string") {
@@ -32,7 +32,7 @@ var ServerEnv = function(){
         process.on('exit', function() { self.terminator(); });
 
         // Removed 'SIGPIPE' from the list - bugz 852598.
-        ['SIGHUP', 'SIGINT', 'SIGQUIT', 'SIGILL', 'SIGTRAP', 'SIGABRT',
+        [ 'SIGHUP', 'SIGINT', 'SIGQUIT', 'SIGILL', 'SIGTRAP', 'SIGABRT',
          'SIGBUS', 'SIGFPE', 'SIGUSR1', 'SIGSEGV', 'SIGUSR2', 'SIGTERM'
         ].forEach(function(element, index, array) {
             process.on(element, function() { self.terminator(element); });

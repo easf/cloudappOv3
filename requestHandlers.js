@@ -1,6 +1,7 @@
 var exec = require("child_process").exec;
 var querystring = require("querystring"), fs = require("fs"), formidable = require("formidable"), mv =require("mv");
 var s3 = require('s3');
+const path = require('path');
 
 var RESPONSE_LENGTH = 5;
 var APP_NAME = "Generic ";
@@ -36,26 +37,26 @@ function upload(  req, res  ) {
     form.parse( req, function( error, fields, files ) {
         console.log("parsing done");
         console.log (fields); // to print call parameters 
-        var newPath;
+        //var newPath;
         
-        switch(file) {
-            case "uca.jpg":
-                newPath = "tmp/uca.jpg";
-                break;
-            case "olimpia.jpg":
-                newPath = "tmp/olimpia.jpg";
-                break;
-            case "file.pdf":
-                newPath = "tmp/file.pdf";
-                break;
-            default:
-                newPath = "tmp/file";
-        }
-        
-        mv(files.upload.path, newPath, function(error){
+        // switch(file) {
+        //     case "uca.jpg":
+        //         newPath = "tmp/uca.jpg";
+        //         break;
+        //     case "olimpia.jpg":
+        //         newPath = "tmp/olimpia.jpg";
+        //         break;
+        //     case "file.pdf":
+        //         newPath = "tmp/file.pdf";
+        //         break;
+        //     default:
+        //         newPath = "tmp/file";
+        // }
+        localPath = "tmp/" + fields.filename;
+        mv(files.upload.path, localPath, function(error){
             if(error){
-                fs.unlink(newLocation);
-                mv(files.upload.path, newLocation);
+                fs.unlink(localPath);
+                mv(files.upload.path, localPath);
             }
         });
 
@@ -72,14 +73,15 @@ function download(  req, res  ) {
     var file = req.params["fileId"];
     var fileToDownload = "tmp/uca.jpg";
     var contentType = {"Content-Type": "image/jpg"};
-    
-    switch(file) {
-        case "uca.jpg":
+    fileSplit = file.split(".");
+    var extension = fileSplit.pop();
+    switch(extension) {
+        case "jpg":
             fileToDownload = "tmp/uca.jpg";
             contentType = {"Content-Type": "image/jpg"};
             break;
-        case "olimpia.jpg":
-            fileToDownload = "tmp/olimpia.jpg";
+        case "png":
+    
             contentType = {"Content-Type": "image/jpg"};
             break;
         default:
@@ -87,6 +89,8 @@ function download(  req, res  ) {
             contentType = {"Content-Type": "image/plain"};
             break;
     }
+
+    fileToDownload = "tmp/" + file ;
     var fileAbs = __dirname + "/" + fileToDownload;
     //res.download(file); // Set disposition and send it.
     //res.writeHead( 200, contentType );
