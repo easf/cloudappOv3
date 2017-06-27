@@ -124,11 +124,11 @@ function currencyGet (req, res){
 
 	data[ "responseRequested" ] = "amount : ListOfAmount ";			 
 
-    data'[ "info" ']  = "Get call handled by currencyGet, Openshift cloud/requestHandlers.js";
+    data [ "info" ]  = "Get call handled by currencyGet, Openshift cloud";
     for (var i = RESPONSE_LENGTH - 1; i >= 0; i--) {
-      data '[ "id" + i.toString() '] = APP_NAME +  ROW_INFO + i.toString();
+      data [ "id" + i.toString() ] = APP_NAME +  ROW_INFO + i.toString();
     }
-    data'["by"'] = '["MDDPlus", "DEI-UC", "2017"'];
+    data["by"] = ["MDDPlus", "DEI-UC", "2017"];
     
 
     res.write(JSON.stringify(data));
@@ -180,11 +180,11 @@ function productsProvidersGet (req, res){
 
 	data[ "responseRequested" ] = "idProvider : ListOfIdProvider nameProvider : ListOfNameProvider logoProviderURL : ListOfLogoProviderURL idProduct : ListOfIdProduct nameProduct : ListOfNameProduct ";			 
 
-    data'[ "info" ']  = "Get call handled by productsProvidersGet, Openshift cloud/requestHandlers.js";
+    data [ "info" ]  = "Get call handled by productsProvidersGet, Openshift cloud";
     for (var i = RESPONSE_LENGTH - 1; i >= 0; i--) {
-      data '[ "id" + i.toString() '] = APP_NAME +  ROW_INFO + i.toString();
+      data [ "id" + i.toString() ] = APP_NAME +  ROW_INFO + i.toString();
     }
-    data'["by"'] = '["MDDPlus", "DEI-UC", "2017"'];
+    data["by"] = ["MDDPlus", "DEI-UC", "2017"];
     
 
     res.write(JSON.stringify(data));
@@ -205,11 +205,11 @@ function productsGet (req, res){
 
 	data[ "responseRequested" ] = "idProduct : ListOfIdProduct productName : ListOfProductName idCategory : ListOfIdCategory categoryName : ListOfCategoryName productImageURL : ListOfProductImageURL ";			 
 
-    data'[ "info" ']  = "Get call handled by productsGet, Openshift cloud/requestHandlers.js";
+    data [ "info" ]  = "Get call handled by productsGet, Openshift cloud";
     for (var i = RESPONSE_LENGTH - 1; i >= 0; i--) {
-      data '[ "id" + i.toString() '] = APP_NAME +  ROW_INFO + i.toString();
+      data [ "id" + i.toString() ] = APP_NAME +  ROW_INFO + i.toString();
     }
-    data'["by"'] = '["MDDPlus", "DEI-UC", "2017"'];
+    data["by"] = ["MDDPlus", "DEI-UC", "2017"];
     
 
     res.write(JSON.stringify(data));
@@ -287,11 +287,11 @@ function purchasesDelete (req, res){
     var data = {};
 
 
-    data'[ "info" ']  = "Delete call handled by purchasesDelete, Openshift cloud/requestHandlers.js";
+    data [ "info" ]  = "Delete call handled by purchasesDelete, Openshift cloud";
     for (var i = RESPONSE_LENGTH - 1; i >= 0; i--) {
-      data '[ "id" + i.toString() '] = APP_NAME +  ROW_INFO + i.toString();
+      data [ "id" + i.toString() ] = APP_NAME +  ROW_INFO + i.toString();
     }
-    data'["by"'] = '["MDDPlus", "DEI-UC", "2017"'];
+    data["by"] = ["MDDPlus", "DEI-UC", "2017"];
     
 
     res.write(JSON.stringify(data));
@@ -312,11 +312,11 @@ function purchasesGet (req, res){
 
 	data[ "responseRequested" ] = "idPurchase : ListOfIdPurchase productList : ListOfProductList amount : ListOfAmount ";			 
 
-    data'[ "info" ']  = "Get call handled by purchasesGet, Openshift cloud/requestHandlers.js";
+    data [ "info" ]  = "Get call handled by purchasesGet, Openshift cloud";
     for (var i = RESPONSE_LENGTH - 1; i >= 0; i--) {
-      data '[ "id" + i.toString() '] = APP_NAME +  ROW_INFO + i.toString();
+      data [ "id" + i.toString() ] = APP_NAME +  ROW_INFO + i.toString();
     }
-    data'["by"'] = '["MDDPlus", "DEI-UC", "2017"'];
+    data["by"] = ["MDDPlus", "DEI-UC", "2017"];
     
 
     res.write(JSON.stringify(data));
@@ -335,11 +335,11 @@ function purchasesPost (req, res){
     var data = {};
 
 
-    data'[ "info" ']  = "Post call handled by purchasesPost, Openshift cloud/requestHandlers.js";
+    data [ "info" ]  = "Post call handled by purchasesPost, Openshift cloud";
     for (var i = RESPONSE_LENGTH - 1; i >= 0; i--) {
-      data '[ "id" + i.toString() '] = APP_NAME +  ROW_INFO + i.toString();
+      data [ "id" + i.toString() ] = APP_NAME +  ROW_INFO + i.toString();
     }
-    data'["by"'] = '["MDDPlus", "DEI-UC", "2017"'];
+    data["by"] = ["MDDPlus", "DEI-UC", "2017"];
     
 
     res.write(JSON.stringify(data));
@@ -358,11 +358,11 @@ function purchasesPut (req, res){
     var data = {};
 
 
-    data'[ "info" ']  = "Put call handled by purchasesPut, Openshift cloud/requestHandlers.js";
+    data [ "info" ]  = "Put call handled by purchasesPut, Openshift cloud";
     for (var i = RESPONSE_LENGTH - 1; i >= 0; i--) {
-      data '[ "id" + i.toString() '] = APP_NAME +  ROW_INFO + i.toString();
+      data [ "id" + i.toString() ] = APP_NAME +  ROW_INFO + i.toString();
     }
-    data'["by"'] = '["MDDPlus", "DEI-UC", "2017"'];
+    data["by"] = ["MDDPlus", "DEI-UC", "2017"];
     
 
     res.write(JSON.stringify(data));
@@ -383,11 +383,11 @@ function userGet (req, res){
 
 	data[ "responseRequested" ] = "userName : ListOfUserName creditCard : ListOfCreditCard phone : ListOfPhone email : ListOfEmail address : ListOfAddress city : ListOfCity state : ListOfState ";			 
 
-    data'[ "info" ']  = "Get call handled by userGet, Openshift cloud/requestHandlers.js";
+    data [ "info" ]  = "Get call handled by userGet, Openshift cloud";
     for (var i = RESPONSE_LENGTH - 1; i >= 0; i--) {
-      data '[ "id" + i.toString() '] = APP_NAME +  ROW_INFO + i.toString();
+      data [ "id" + i.toString() ] = APP_NAME +  ROW_INFO + i.toString();
     }
-    data'["by"'] = '["MDDPlus", "DEI-UC", "2017"'];
+    data["by"] = ["MDDPlus", "DEI-UC", "2017"];
     
 
     res.write(JSON.stringify(data));
@@ -406,11 +406,11 @@ function userPut (req, res){
     var data = {};
 
 
-    data'[ "info" ']  = "Put call handled by userPut, Openshift cloud/requestHandlers.js";
+    data [ "info" ]  = "Put call handled by userPut, Openshift cloud";
     for (var i = RESPONSE_LENGTH - 1; i >= 0; i--) {
-      data '[ "id" + i.toString() '] = APP_NAME +  ROW_INFO + i.toString();
+      data [ "id" + i.toString() ] = APP_NAME +  ROW_INFO + i.toString();
     }
-    data'["by"'] = '["MDDPlus", "DEI-UC", "2017"'];
+    data["by"] = ["MDDPlus", "DEI-UC", "2017"];
     
 
     res.write(JSON.stringify(data));
