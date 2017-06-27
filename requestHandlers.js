@@ -113,6 +113,62 @@ function getContentType (extension) {
 
 
 
+function currencyGet (req, res){
+    console.log("Request handler 'data currencyGet' was called.");
+    console.log(req.query);  // to print call parameters   
+    
+    res.writeHead(200, {"Content-Type": "application/json; charset=utf-8"});
+
+    var data = {};
+
+
+	data[ "responseRequested" ] = "amount : ListOfAmount ";			 
+
+    data'[ "info" ']  = "Get call handled by currencyGet, Openshift cloud/requestHandlers.js";
+    for (var i = RESPONSE_LENGTH - 1; i >= 0; i--) {
+      data '[ "id" + i.toString() '] = APP_NAME +  ROW_INFO + i.toString();
+    }
+    data'["by"'] = '["MDDPlus", "DEI-UC", "2017"'];
+    
+
+    res.write(JSON.stringify(data));
+    res.end();
+}
+
+exports.currencyGet = currencyGet;
+
+
+
+function productsLogosLoadImage(  req, res  ) {
+    console.log( "Request handler 'productsLogosLoadImage' was called." );
+    console.log(req.query); // to print call parameters 
+    
+    var file = req.params[ "file" ];
+    var fileSplit = file.split(".");
+    var extension = fileSplit.pop();
+ 	var fileToDownload = "tmp/" + file;
+	var contentType = getContentType (extension);
+	
+
+    var fileAbs = __dirname + "/" + fileToDownload;
+    //res.download(file); // Set disposition and send it.
+    //res.writeHead( 200, contentType );
+    res.download(fileAbs, file, function(err){
+    if (err) {
+        console.log("Download error!");
+    } else {
+        console.log("Download success!");
+    }
+    });
+    //fs.createReadStream(fileToDownload).pipe(res);
+    //res.end();
+}
+
+exports.productsLogosLoadImage = productsLogosLoadImage;
+
+
+
+
 function productsProvidersGet (req, res){
     console.log("Request handler 'data productsProvidersGet' was called.");
     console.log(req.query);  // to print call parameters   
@@ -124,11 +180,11 @@ function productsProvidersGet (req, res){
 
 	data[ "responseRequested" ] = "idProvider : ListOfIdProvider nameProvider : ListOfNameProvider logoProviderURL : ListOfLogoProviderURL idProduct : ListOfIdProduct nameProduct : ListOfNameProduct ";			 
 
-    data[ "info" ]  = "Get call handled by productsProvidersGet, Openshift cloud";
+    data'[ "info" ']  = "Get call handled by productsProvidersGet, Openshift cloud/requestHandlers.js";
     for (var i = RESPONSE_LENGTH - 1; i >= 0; i--) {
-      data [ "id" + i.toString() ] = APP_NAME +  ROW_INFO + i.toString();
+      data '[ "id" + i.toString() '] = APP_NAME +  ROW_INFO + i.toString();
     }
-    data["by"] = ["MDDPlus", "DEI-UC", "2017"];
+    data'["by"'] = '["MDDPlus", "DEI-UC", "2017"'];
     
 
     res.write(JSON.stringify(data));
@@ -136,6 +192,31 @@ function productsProvidersGet (req, res){
 }
 
 exports.productsProvidersGet = productsProvidersGet;
+
+
+function productsGet (req, res){
+    console.log("Request handler 'data productsGet' was called.");
+    console.log(req.query);  // to print call parameters   
+    
+    res.writeHead(200, {"Content-Type": "application/json; charset=utf-8"});
+
+    var data = {};
+
+
+	data[ "responseRequested" ] = "idProduct : ListOfIdProduct productName : ListOfProductName idCategory : ListOfIdCategory categoryName : ListOfCategoryName productImageURL : ListOfProductImageURL ";			 
+
+    data'[ "info" ']  = "Get call handled by productsGet, Openshift cloud/requestHandlers.js";
+    for (var i = RESPONSE_LENGTH - 1; i >= 0; i--) {
+      data '[ "id" + i.toString() '] = APP_NAME +  ROW_INFO + i.toString();
+    }
+    data'["by"'] = '["MDDPlus", "DEI-UC", "2017"'];
+    
+
+    res.write(JSON.stringify(data));
+    res.end();
+}
+
+exports.productsGet = productsGet;
 
 
 
@@ -197,62 +278,6 @@ function productsImagesUpload(  req, res  ) {
 exports.productsImagesUpload = productsImagesUpload;
 
 
-
-function productsLogosLoadImage(  req, res  ) {
-    console.log( "Request handler 'productsLogosLoadImage' was called." );
-    console.log(req.query); // to print call parameters 
-    
-    var file = req.params[ "file" ];
-    var fileSplit = file.split(".");
-    var extension = fileSplit.pop();
- 	var fileToDownload = "tmp/" + file;
-	var contentType = getContentType (extension);
-	
-
-    var fileAbs = __dirname + "/" + fileToDownload;
-    //res.download(file); // Set disposition and send it.
-    //res.writeHead( 200, contentType );
-    res.download(fileAbs, file, function(err){
-    if (err) {
-        console.log("Download error!");
-    } else {
-        console.log("Download success!");
-    }
-    });
-    //fs.createReadStream(fileToDownload).pipe(res);
-    //res.end();
-}
-
-exports.productsLogosLoadImage = productsLogosLoadImage;
-
-
-
-
-function productsGet (req, res){
-    console.log("Request handler 'data productsGet' was called.");
-    console.log(req.query);  // to print call parameters   
-    
-    res.writeHead(200, {"Content-Type": "application/json; charset=utf-8"});
-
-    var data = {};
-
-
-	data[ "responseRequested" ] = "idProduct : ListOfIdProduct productName : ListOfProductName idCategory : ListOfIdCategory categoryName : ListOfCategoryName productImageURL : ListOfProductImageURL ";			 
-
-    data[ "info" ]  = "Get call handled by productsGet, Openshift cloud";
-    for (var i = RESPONSE_LENGTH - 1; i >= 0; i--) {
-      data [ "id" + i.toString() ] = APP_NAME +  ROW_INFO + i.toString();
-    }
-    data["by"] = ["MDDPlus", "DEI-UC", "2017"];
-    
-
-    res.write(JSON.stringify(data));
-    res.end();
-}
-
-exports.productsGet = productsGet;
-
-
 function purchasesDelete (req, res){
     console.log("Request handler 'data purchasesDelete' was called.");
     console.log(req.query);  // to print call parameters   
@@ -262,11 +287,11 @@ function purchasesDelete (req, res){
     var data = {};
 
 
-    data[ "info" ]  = "Delete call handled by purchasesDelete, Openshift cloud";
+    data'[ "info" ']  = "Delete call handled by purchasesDelete, Openshift cloud/requestHandlers.js";
     for (var i = RESPONSE_LENGTH - 1; i >= 0; i--) {
-      data [ "id" + i.toString() ] = APP_NAME +  ROW_INFO + i.toString();
+      data '[ "id" + i.toString() '] = APP_NAME +  ROW_INFO + i.toString();
     }
-    data["by"] = ["MDDPlus", "DEI-UC", "2017"];
+    data'["by"'] = '["MDDPlus", "DEI-UC", "2017"'];
     
 
     res.write(JSON.stringify(data));
@@ -287,11 +312,11 @@ function purchasesGet (req, res){
 
 	data[ "responseRequested" ] = "idPurchase : ListOfIdPurchase productList : ListOfProductList amount : ListOfAmount ";			 
 
-    data[ "info" ]  = "Get call handled by purchasesGet, Openshift cloud";
+    data'[ "info" ']  = "Get call handled by purchasesGet, Openshift cloud/requestHandlers.js";
     for (var i = RESPONSE_LENGTH - 1; i >= 0; i--) {
-      data [ "id" + i.toString() ] = APP_NAME +  ROW_INFO + i.toString();
+      data '[ "id" + i.toString() '] = APP_NAME +  ROW_INFO + i.toString();
     }
-    data["by"] = ["MDDPlus", "DEI-UC", "2017"];
+    data'["by"'] = '["MDDPlus", "DEI-UC", "2017"'];
     
 
     res.write(JSON.stringify(data));
@@ -310,11 +335,11 @@ function purchasesPost (req, res){
     var data = {};
 
 
-    data[ "info" ]  = "Post call handled by purchasesPost, Openshift cloud";
+    data'[ "info" ']  = "Post call handled by purchasesPost, Openshift cloud/requestHandlers.js";
     for (var i = RESPONSE_LENGTH - 1; i >= 0; i--) {
-      data [ "id" + i.toString() ] = APP_NAME +  ROW_INFO + i.toString();
+      data '[ "id" + i.toString() '] = APP_NAME +  ROW_INFO + i.toString();
     }
-    data["by"] = ["MDDPlus", "DEI-UC", "2017"];
+    data'["by"'] = '["MDDPlus", "DEI-UC", "2017"'];
     
 
     res.write(JSON.stringify(data));
@@ -333,11 +358,11 @@ function purchasesPut (req, res){
     var data = {};
 
 
-    data[ "info" ]  = "Put call handled by purchasesPut, Openshift cloud";
+    data'[ "info" ']  = "Put call handled by purchasesPut, Openshift cloud/requestHandlers.js";
     for (var i = RESPONSE_LENGTH - 1; i >= 0; i--) {
-      data [ "id" + i.toString() ] = APP_NAME +  ROW_INFO + i.toString();
+      data '[ "id" + i.toString() '] = APP_NAME +  ROW_INFO + i.toString();
     }
-    data["by"] = ["MDDPlus", "DEI-UC", "2017"];
+    data'["by"'] = '["MDDPlus", "DEI-UC", "2017"'];
     
 
     res.write(JSON.stringify(data));
@@ -358,11 +383,11 @@ function userGet (req, res){
 
 	data[ "responseRequested" ] = "userName : ListOfUserName creditCard : ListOfCreditCard phone : ListOfPhone email : ListOfEmail address : ListOfAddress city : ListOfCity state : ListOfState ";			 
 
-    data[ "info" ]  = "Get call handled by userGet, Openshift cloud";
+    data'[ "info" ']  = "Get call handled by userGet, Openshift cloud/requestHandlers.js";
     for (var i = RESPONSE_LENGTH - 1; i >= 0; i--) {
-      data [ "id" + i.toString() ] = APP_NAME +  ROW_INFO + i.toString();
+      data '[ "id" + i.toString() '] = APP_NAME +  ROW_INFO + i.toString();
     }
-    data["by"] = ["MDDPlus", "DEI-UC", "2017"];
+    data'["by"'] = '["MDDPlus", "DEI-UC", "2017"'];
     
 
     res.write(JSON.stringify(data));
@@ -381,11 +406,11 @@ function userPut (req, res){
     var data = {};
 
 
-    data[ "info" ]  = "Put call handled by userPut, Openshift cloud";
+    data'[ "info" ']  = "Put call handled by userPut, Openshift cloud/requestHandlers.js";
     for (var i = RESPONSE_LENGTH - 1; i >= 0; i--) {
-      data [ "id" + i.toString() ] = APP_NAME +  ROW_INFO + i.toString();
+      data '[ "id" + i.toString() '] = APP_NAME +  ROW_INFO + i.toString();
     }
-    data["by"] = ["MDDPlus", "DEI-UC", "2017"];
+    data'["by"'] = '["MDDPlus", "DEI-UC", "2017"'];
     
 
     res.write(JSON.stringify(data));

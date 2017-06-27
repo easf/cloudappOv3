@@ -6,29 +6,36 @@ var express = require("express");
 var router = express.Router();
 var requestHandlers = require("./requestHandlers");
 
-
 router.route("/")
-  .get(requestHandlers.start);
+	.get(requestHandlers.start);
+
+
+
+router.route("/currency/")
+
+	.get(requestHandlers.currencyGet) 
+
+
+router.route("/products/logos/:file")
+
+	.get(requestHandlers.productsLogosLoadImage) 
+
 
 router.route("/products/providers")
-	.get(requestHandlers.productsProvidersGet);
+
+	.get(requestHandlers.productsProvidersGet) 
+
+
+router.route("/products/")
+
+	.get(requestHandlers.productsGet) 
 
 
 router.route("/products/images/:file")
 
 	.get(requestHandlers.productsImagesDownload) 
 
-	.post(requestHandlers.productsImagesUpload);
-
-
-router.route("/products/logos/:file")
-
-	.get(requestHandlers.productsLogosLoadImage) ;
-
-
-router.route("/products/")
-
-	.get(requestHandlers.productsGet) ;
+	.post(requestHandlers.productsImagesUpload)
 
 
 router.route("/purchases/")
@@ -39,14 +46,15 @@ router.route("/purchases/")
 
 	.post(requestHandlers.purchasesPost) 
 
-	.put(requestHandlers.purchasesPut) ;
+	.put(requestHandlers.purchasesPut) 
 
 
 router.route("/user/")
 
 	.get(requestHandlers.userGet) 
 
-	.put(requestHandlers.userPut) ;
+	.put(requestHandlers.userPut) 
 
+	
 
 module.exports = router;
