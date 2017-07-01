@@ -11,33 +11,6 @@ router.route("/")
 
 
 
-router.route("/currency/")
-
-	.get(requestHandlers.currencyGet) 
-
-
-router.route("/products/logos/:file")
-
-	.get(requestHandlers.productsLogosLoadImage) 
-
-
-router.route("/products/providers")
-
-	.get(requestHandlers.productsProvidersGet) 
-
-
-router.route("/products/")
-
-	.get(requestHandlers.productsGet) 
-
-
-router.route("/products/images/:file")
-
-	.get(requestHandlers.productsImagesDownload) 
-
-	.post(requestHandlers.productsImagesUpload)
-
-
 router.route("/purchases/")
 
 	.delete(requestHandlers.purchasesDelete) 
@@ -54,6 +27,33 @@ router.route("/user/")
 	.get(requestHandlers.userGet) 
 
 	.put(requestHandlers.userPut) 
+
+
+router.route("/currency/")
+
+	.get(requestHandlers.currencyGet) 
+
+
+router.route("/products/providers")
+
+	.get(requestHandlers.productsProvidersGet) 
+
+
+router.route("/products/images/:file")
+
+	.get(requestHandlers.productsImagesDownload) 
+
+	.post(requestHandlers.productsImagesUpload)
+
+
+router.route("/products/")
+
+	.get(requestHandlers.productsGet) 
+
+
+router.route("/products/logos/:file")
+
+	.get(requestHandlers.productsLogosLoadImage) 
 
 	
 

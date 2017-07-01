@@ -113,171 +113,6 @@ function getContentType (extension) {
 
 
 
-function currencyGet (req, res){
-    console.log("Request handler 'data currencyGet' was called.");
-    console.log(req.query);  // to print call parameters   
-    
-    res.writeHead(200, {"Content-Type": "application/json; charset=utf-8"});
-
-    var data = {};
-
-
-	data[ "responseRequested" ] = "amount : ListOfAmount ";			 
-
-    data [ "info" ]  = "Get call handled by currencyGet, Openshift cloud";
-    for (var i = RESPONSE_LENGTH - 1; i >= 0; i--) {
-      data [ "id" + i.toString() ] = APP_NAME +  ROW_INFO + i.toString();
-    }
-    data["by"] = ["MDDPlus", "DEI-UC", "2017"];
-    
-
-    res.write(JSON.stringify(data));
-    res.end();
-}
-
-exports.currencyGet = currencyGet;
-
-
-
-function productsLogosLoadImage(  req, res  ) {
-    console.log( "Request handler 'productsLogosLoadImage' was called." );
-    console.log(req.query); // to print call parameters 
-    
-    var file = req.params[ "file" ];
-    var fileSplit = file.split(".");
-    var extension = fileSplit.pop();
- 	var fileToDownload = "tmp/" + file;
-	var contentType = getContentType (extension);
-	
-
-    var fileAbs = __dirname + "/" + fileToDownload;
-    //res.download(file); // Set disposition and send it.
-    //res.writeHead( 200, contentType );
-    res.download(fileAbs, file, function(err){
-    if (err) {
-        console.log("Download error!");
-    } else {
-        console.log("Download success!");
-    }
-    });
-    //fs.createReadStream(fileToDownload).pipe(res);
-    //res.end();
-}
-
-exports.productsLogosLoadImage = productsLogosLoadImage;
-
-
-
-
-function productsProvidersGet (req, res){
-    console.log("Request handler 'data productsProvidersGet' was called.");
-    console.log(req.query);  // to print call parameters   
-    
-    res.writeHead(200, {"Content-Type": "application/json; charset=utf-8"});
-
-    var data = {};
-
-
-	data[ "responseRequested" ] = "idProvider : ListOfIdProvider nameProvider : ListOfNameProvider logoProviderURL : ListOfLogoProviderURL idProduct : ListOfIdProduct nameProduct : ListOfNameProduct ";			 
-
-    data [ "info" ]  = "Get call handled by productsProvidersGet, Openshift cloud";
-    for (var i = RESPONSE_LENGTH - 1; i >= 0; i--) {
-      data [ "id" + i.toString() ] = APP_NAME +  ROW_INFO + i.toString();
-    }
-    data["by"] = ["MDDPlus", "DEI-UC", "2017"];
-    
-
-    res.write(JSON.stringify(data));
-    res.end();
-}
-
-exports.productsProvidersGet = productsProvidersGet;
-
-
-function productsGet (req, res){
-    console.log("Request handler 'data productsGet' was called.");
-    console.log(req.query);  // to print call parameters   
-    
-    res.writeHead(200, {"Content-Type": "application/json; charset=utf-8"});
-
-    var data = {};
-
-
-	data[ "responseRequested" ] = "idProduct : ListOfIdProduct productName : ListOfProductName idCategory : ListOfIdCategory categoryName : ListOfCategoryName productImageURL : ListOfProductImageURL ";			 
-
-    data [ "info" ]  = "Get call handled by productsGet, Openshift cloud";
-    for (var i = RESPONSE_LENGTH - 1; i >= 0; i--) {
-      data [ "id" + i.toString() ] = APP_NAME +  ROW_INFO + i.toString();
-    }
-    data["by"] = ["MDDPlus", "DEI-UC", "2017"];
-    
-
-    res.write(JSON.stringify(data));
-    res.end();
-}
-
-exports.productsGet = productsGet;
-
-
-
-function productsImagesDownload(  req, res  ) {
-    console.log( "Request handler 'productsImagesDownload' was called." );
-    console.log(req.query); // to print call parameters 
-    
-    var file = req.params[ "file" ];
-    var fileSplit = file.split(".");
-    var extension = fileSplit.pop();
- 	var fileToDownload = "tmp/" + file;
-	var contentType = getContentType (extension);
-	
-
-    var fileAbs = __dirname + "/" + fileToDownload;
-    //res.download(file); // Set disposition and send it.
-    //res.writeHead( 200, contentType );
-    res.download(fileAbs, file, function(err){
-    if (err) {
-        console.log("Download error!");
-    } else {
-        console.log("Download success!");
-    }
-    });
-    //fs.createReadStream(fileToDownload).pipe(res);
-    //res.end();
-}
-
-exports.productsImagesDownload = productsImagesDownload;
-
-
-
-
-
-function productsImagesUpload(  req, res  ) {
-    console.log ( "Request handler 'productsImagesUpload' was called." );
-    
-    var form = new formidable.IncomingForm();
-    console.log("about to parse");
-    
-    form.parse( req, function( error, fields, files ) {
-        console.log("parsing done");
-        console.log (fields); // to print call parameters 
-        
-        localPath = "tmp/" + fields.filename;
-        mv(files.upload.path, localPath, function(error){
-            if(error){
-                fs.unlink(localPath);
-                mv(files.upload.path, localPath);
-            }
-        });
-
-        res.writeHead( 200 );
-        res.end();
-
-    });
-}
-
-exports.productsImagesUpload = productsImagesUpload;
-
-
 function purchasesDelete (req, res){
     console.log("Request handler 'data purchasesDelete' was called.");
     console.log(req.query);  // to print call parameters   
@@ -418,4 +253,169 @@ function userPut (req, res){
 }
 
 exports.userPut = userPut;
+
+
+function currencyGet (req, res){
+    console.log("Request handler 'data currencyGet' was called.");
+    console.log(req.query);  // to print call parameters   
+    
+    res.writeHead(200, {"Content-Type": "application/json; charset=utf-8"});
+
+    var data = {};
+
+
+	data[ "responseRequested" ] = "amount : ListOfAmount ";			 
+
+    data [ "info" ]  = "Get call handled by currencyGet, Openshift cloud";
+    for (var i = RESPONSE_LENGTH - 1; i >= 0; i--) {
+      data [ "id" + i.toString() ] = APP_NAME +  ROW_INFO + i.toString();
+    }
+    data["by"] = ["MDDPlus", "DEI-UC", "2017"];
+    
+
+    res.write(JSON.stringify(data));
+    res.end();
+}
+
+exports.currencyGet = currencyGet;
+
+
+function productsProvidersGet (req, res){
+    console.log("Request handler 'data productsProvidersGet' was called.");
+    console.log(req.query);  // to print call parameters   
+    
+    res.writeHead(200, {"Content-Type": "application/json; charset=utf-8"});
+
+    var data = {};
+
+
+	data[ "responseRequested" ] = "idProvider : ListOfIdProvider nameProvider : ListOfNameProvider logoProviderURL : ListOfLogoProviderURL idProduct : ListOfIdProduct nameProduct : ListOfNameProduct ";			 
+
+    data [ "info" ]  = "Get call handled by productsProvidersGet, Openshift cloud";
+    for (var i = RESPONSE_LENGTH - 1; i >= 0; i--) {
+      data [ "id" + i.toString() ] = APP_NAME +  ROW_INFO + i.toString();
+    }
+    data["by"] = ["MDDPlus", "DEI-UC", "2017"];
+    
+
+    res.write(JSON.stringify(data));
+    res.end();
+}
+
+exports.productsProvidersGet = productsProvidersGet;
+
+
+
+function productsImagesDownload(  req, res  ) {
+    console.log( "Request handler 'productsImagesDownload' was called." );
+    console.log(req.query); // to print call parameters 
+    
+    var file = req.params[ "file" ];
+    var fileSplit = file.split(".");
+    var extension = fileSplit.pop();
+ 	var fileToDownload = "tmp/" + file;
+	var contentType = getContentType (extension);
+	
+
+    var fileAbs = __dirname + "/" + fileToDownload;
+    //res.download(file); // Set disposition and send it.
+    //res.writeHead( 200, contentType );
+    res.download(fileAbs, file, function(err){
+    if (err) {
+        console.log("Download error!");
+    } else {
+        console.log("Download success!");
+    }
+    });
+    //fs.createReadStream(fileToDownload).pipe(res);
+    //res.end();
+}
+
+exports.productsImagesDownload = productsImagesDownload;
+
+
+
+
+
+function productsImagesUpload(  req, res  ) {
+    console.log ( "Request handler 'productsImagesUpload' was called." );
+    
+    var form = new formidable.IncomingForm();
+    console.log("about to parse");
+    
+    form.parse( req, function( error, fields, files ) {
+        console.log("parsing done");
+        console.log (fields); // to print call parameters 
+        
+        localPath = "tmp/" + fields.filename;
+        mv(files.upload.path, localPath, function(error){
+            if(error){
+                fs.unlink(localPath);
+                mv(files.upload.path, localPath);
+            }
+        });
+
+        res.writeHead( 200 );
+        res.end();
+
+    });
+}
+
+exports.productsImagesUpload = productsImagesUpload;
+
+
+function productsGet (req, res){
+    console.log("Request handler 'data productsGet' was called.");
+    console.log(req.query);  // to print call parameters   
+    
+    res.writeHead(200, {"Content-Type": "application/json; charset=utf-8"});
+
+    var data = {};
+
+
+	data[ "responseRequested" ] = "idProduct : ListOfIdProduct productName : ListOfProductName idCategory : ListOfIdCategory categoryName : ListOfCategoryName productImageURL : ListOfProductImageURL ";			 
+
+    data [ "info" ]  = "Get call handled by productsGet, Openshift cloud";
+    for (var i = RESPONSE_LENGTH - 1; i >= 0; i--) {
+      data [ "id" + i.toString() ] = APP_NAME +  ROW_INFO + i.toString();
+    }
+    data["by"] = ["MDDPlus", "DEI-UC", "2017"];
+    
+
+    res.write(JSON.stringify(data));
+    res.end();
+}
+
+exports.productsGet = productsGet;
+
+
+
+function productsLogosLoadImage(  req, res  ) {
+    console.log( "Request handler 'productsLogosLoadImage' was called." );
+    console.log(req.query); // to print call parameters 
+    
+    var file = req.params[ "file" ];
+    var fileSplit = file.split(".");
+    var extension = fileSplit.pop();
+ 	var fileToDownload = "tmp/" + file;
+	var contentType = getContentType (extension);
+	
+
+    var fileAbs = __dirname + "/" + fileToDownload;
+    //res.download(file); // Set disposition and send it.
+    //res.writeHead( 200, contentType );
+    res.download(fileAbs, file, function(err){
+    if (err) {
+        console.log("Download error!");
+    } else {
+        console.log("Download success!");
+    }
+    });
+    //fs.createReadStream(fileToDownload).pipe(res);
+    //res.end();
+}
+
+exports.productsLogosLoadImage = productsLogosLoadImage;
+
+
 
