@@ -4,7 +4,7 @@ var s3 = require('s3');
 const path = require('path');
 
 var RESPONSE_LENGTH = 5;
-var APP_NAME = "CarritoDeCompras ";
+var APP_NAME = "ShoppingCart ";
 var ROW_INFO = "row: " ;
 
 function start ( req, res ) {
@@ -113,8 +113,8 @@ function getContentType (extension) {
 
 
 
-function purchasesDelete (req, res){
-    console.log("Request handler 'data purchasesDelete' was called.");
+function customerPost (req, res){
+    console.log("Request handler 'data customerPost' was called.");
     console.log(req.query);  // to print call parameters   
     
     res.writeHead(200, {"Content-Type": "application/json; charset=utf-8"});
@@ -122,7 +122,7 @@ function purchasesDelete (req, res){
     var data = {};
 
 
-    data [ "info" ]  = "Delete call handled by purchasesDelete, Openshift cloud";
+    data [ "info" ]  = "Post call handled by customerPost, Openshift cloud";
     for (var i = RESPONSE_LENGTH - 1; i >= 0; i--) {
       data [ "id" + i.toString() ] = APP_NAME +  ROW_INFO + i.toString();
     }
@@ -133,11 +133,11 @@ function purchasesDelete (req, res){
     res.end();
 }
 
-exports.purchasesDelete = purchasesDelete;
+exports.customerPost = customerPost;
 
 
-function purchasesGet (req, res){
-    console.log("Request handler 'data purchasesGet' was called.");
+function customerDelete (req, res){
+    console.log("Request handler 'data customerDelete' was called.");
     console.log(req.query);  // to print call parameters   
     
     res.writeHead(200, {"Content-Type": "application/json; charset=utf-8"});
@@ -145,9 +145,7 @@ function purchasesGet (req, res){
     var data = {};
 
 
-	data[ "responseRequested" ] = "idPurchase : ListOfIdPurchase productList : ListOfProductList amount : ListOfAmount ";			 
-
-    data [ "info" ]  = "Get call handled by purchasesGet, Openshift cloud";
+    data [ "info" ]  = "Delete call handled by customerDelete, Openshift cloud";
     for (var i = RESPONSE_LENGTH - 1; i >= 0; i--) {
       data [ "id" + i.toString() ] = APP_NAME +  ROW_INFO + i.toString();
     }
@@ -158,11 +156,11 @@ function purchasesGet (req, res){
     res.end();
 }
 
-exports.purchasesGet = purchasesGet;
+exports.customerDelete = customerDelete;
 
 
-function purchasesPost (req, res){
-    console.log("Request handler 'data purchasesPost' was called.");
+function customerGet (req, res){
+    console.log("Request handler 'data customerGet' was called.");
     console.log(req.query);  // to print call parameters   
     
     res.writeHead(200, {"Content-Type": "application/json; charset=utf-8"});
@@ -170,7 +168,9 @@ function purchasesPost (req, res){
     var data = {};
 
 
-    data [ "info" ]  = "Post call handled by purchasesPost, Openshift cloud";
+	data[ "responseRequested" ] = "name : ListOfName email : ListOfEmail phone : ListOfPhone ";			 
+
+    data [ "info" ]  = "Get call handled by customerGet, Openshift cloud";
     for (var i = RESPONSE_LENGTH - 1; i >= 0; i--) {
       data [ "id" + i.toString() ] = APP_NAME +  ROW_INFO + i.toString();
     }
@@ -181,11 +181,11 @@ function purchasesPost (req, res){
     res.end();
 }
 
-exports.purchasesPost = purchasesPost;
+exports.customerGet = customerGet;
 
 
-function purchasesPut (req, res){
-    console.log("Request handler 'data purchasesPut' was called.");
+function customerPut (req, res){
+    console.log("Request handler 'data customerPut' was called.");
     console.log(req.query);  // to print call parameters   
     
     res.writeHead(200, {"Content-Type": "application/json; charset=utf-8"});
@@ -193,7 +193,7 @@ function purchasesPut (req, res){
     var data = {};
 
 
-    data [ "info" ]  = "Put call handled by purchasesPut, Openshift cloud";
+    data [ "info" ]  = "Put call handled by customerPut, Openshift cloud";
     for (var i = RESPONSE_LENGTH - 1; i >= 0; i--) {
       data [ "id" + i.toString() ] = APP_NAME +  ROW_INFO + i.toString();
     }
@@ -204,11 +204,11 @@ function purchasesPut (req, res){
     res.end();
 }
 
-exports.purchasesPut = purchasesPut;
+exports.customerPut = customerPut;
 
 
-function userGet (req, res){
-    console.log("Request handler 'data userGet' was called.");
+function customerPurchasesGet (req, res){
+    console.log("Request handler 'data customerPurchasesGet' was called.");
     console.log(req.query);  // to print call parameters   
     
     res.writeHead(200, {"Content-Type": "application/json; charset=utf-8"});
@@ -216,9 +216,9 @@ function userGet (req, res){
     var data = {};
 
 
-	data[ "responseRequested" ] = "userName : ListOfUserName creditCard : ListOfCreditCard phone : ListOfPhone email : ListOfEmail address : ListOfAddress city : ListOfCity state : ListOfState ";			 
+	data[ "responseRequested" ] = "id : ListOfId ordered : ListOfOrdered total : ListOfTotal quantity : ListOfQuantity price : ListOfPrice idAccount : ListOfIdAccount ";			 
 
-    data [ "info" ]  = "Get call handled by userGet, Openshift cloud";
+    data [ "info" ]  = "Get call handled by customerPurchasesGet, Openshift cloud";
     for (var i = RESPONSE_LENGTH - 1; i >= 0; i--) {
       data [ "id" + i.toString() ] = APP_NAME +  ROW_INFO + i.toString();
     }
@@ -229,11 +229,11 @@ function userGet (req, res){
     res.end();
 }
 
-exports.userGet = userGet;
+exports.customerPurchasesGet = customerPurchasesGet;
 
 
-function userPut (req, res){
-    console.log("Request handler 'data userPut' was called.");
+function customerPurchasesPost (req, res){
+    console.log("Request handler 'data customerPurchasesPost' was called.");
     console.log(req.query);  // to print call parameters   
     
     res.writeHead(200, {"Content-Type": "application/json; charset=utf-8"});
@@ -241,7 +241,7 @@ function userPut (req, res){
     var data = {};
 
 
-    data [ "info" ]  = "Put call handled by userPut, Openshift cloud";
+    data [ "info" ]  = "Post call handled by customerPurchasesPost, Openshift cloud";
     for (var i = RESPONSE_LENGTH - 1; i >= 0; i--) {
       data [ "id" + i.toString() ] = APP_NAME +  ROW_INFO + i.toString();
     }
@@ -252,11 +252,42 @@ function userPut (req, res){
     res.end();
 }
 
-exports.userPut = userPut;
+exports.customerPurchasesPost = customerPurchasesPost;
 
 
-function currencyGet (req, res){
-    console.log("Request handler 'data currencyGet' was called.");
+
+function productsProviderlogosLoadImage(  req, res  ) {
+    console.log( "Request handler 'productsProviderlogosLoadImage' was called." );
+    console.log(req.query); // to print call parameters 
+    
+    var file = req.params[ "file" ];
+    var fileSplit = file.split(".");
+    var extension = fileSplit.pop();
+ 	var fileToDownload = "tmp/" + file;
+	var contentType = getContentType (extension);
+	
+
+    var fileAbs = __dirname + "/" + fileToDownload;
+    //res.download(file); // Set disposition and send it.
+    //res.writeHead( 200, contentType );
+    res.download(fileAbs, file, function(err){
+    if (err) {
+        console.log("Download error!");
+    } else {
+        console.log("Download success!");
+    }
+    });
+    //fs.createReadStream(fileToDownload).pipe(res);
+    //res.end();
+}
+
+exports.productsProviderlogosLoadImage = productsProviderlogosLoadImage;
+
+
+
+
+function productsCurrencyGet (req, res){
+    console.log("Request handler 'data productsCurrencyGet' was called.");
     console.log(req.query);  // to print call parameters   
     
     res.writeHead(200, {"Content-Type": "application/json; charset=utf-8"});
@@ -264,9 +295,7 @@ function currencyGet (req, res){
     var data = {};
 
 
-	data[ "responseRequested" ] = "amount : ListOfAmount ";			 
-
-    data [ "info" ]  = "Get call handled by currencyGet, Openshift cloud";
+    data [ "info" ]  = "Get call handled by productsCurrencyGet, Openshift cloud";
     for (var i = RESPONSE_LENGTH - 1; i >= 0; i--) {
       data [ "id" + i.toString() ] = APP_NAME +  ROW_INFO + i.toString();
     }
@@ -277,32 +306,7 @@ function currencyGet (req, res){
     res.end();
 }
 
-exports.currencyGet = currencyGet;
-
-
-function productsProvidersGet (req, res){
-    console.log("Request handler 'data productsProvidersGet' was called.");
-    console.log(req.query);  // to print call parameters   
-    
-    res.writeHead(200, {"Content-Type": "application/json; charset=utf-8"});
-
-    var data = {};
-
-
-	data[ "responseRequested" ] = "idProvider : ListOfIdProvider nameProvider : ListOfNameProvider logoProviderURL : ListOfLogoProviderURL idProduct : ListOfIdProduct nameProduct : ListOfNameProduct ";			 
-
-    data [ "info" ]  = "Get call handled by productsProvidersGet, Openshift cloud";
-    for (var i = RESPONSE_LENGTH - 1; i >= 0; i--) {
-      data [ "id" + i.toString() ] = APP_NAME +  ROW_INFO + i.toString();
-    }
-    data["by"] = ["MDDPlus", "DEI-UC", "2017"];
-    
-
-    res.write(JSON.stringify(data));
-    res.end();
-}
-
-exports.productsProvidersGet = productsProvidersGet;
+exports.productsCurrencyGet = productsCurrencyGet;
 
 
 
@@ -373,7 +377,7 @@ function productsGet (req, res){
     var data = {};
 
 
-	data[ "responseRequested" ] = "idProduct : ListOfIdProduct productName : ListOfProductName idCategory : ListOfIdCategory categoryName : ListOfCategoryName productImageURL : ListOfProductImageURL ";			 
+	data[ "responseRequested" ] = "idProduct : ListOfIdProduct idProvider : ListOfIdProvider idNameProduct : ListOfIdNameProduct idNameProvider : ListOfIdNameProvider ";			 
 
     data [ "info" ]  = "Get call handled by productsGet, Openshift cloud";
     for (var i = RESPONSE_LENGTH - 1; i >= 0; i--) {
@@ -390,8 +394,8 @@ exports.productsGet = productsGet;
 
 
 
-function productsLogosLoadImage(  req, res  ) {
-    console.log( "Request handler 'productsLogosLoadImage' was called." );
+function productsTechnicalsheetsDownload(  req, res  ) {
+    console.log( "Request handler 'productsTechnicalsheetsDownload' was called." );
     console.log(req.query); // to print call parameters 
     
     var file = req.params[ "file" ];
@@ -415,7 +419,7 @@ function productsLogosLoadImage(  req, res  ) {
     //res.end();
 }
 
-exports.productsLogosLoadImage = productsLogosLoadImage;
+exports.productsTechnicalsheetsDownload = productsTechnicalsheetsDownload;
 
 
 

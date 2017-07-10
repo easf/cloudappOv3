@@ -11,32 +11,32 @@ router.route("/")
 
 
 
-router.route("/purchases/")
+router.route("/customer/")
 
-	.delete(requestHandlers.purchasesDelete) 
+	.post(requestHandlers.customerPost) 
 
-	.get(requestHandlers.purchasesGet) 
+	.delete(requestHandlers.customerDelete) 
 
-	.post(requestHandlers.purchasesPost) 
+	.get(requestHandlers.customerGet) 
 
-	.put(requestHandlers.purchasesPut) 
-
-
-router.route("/user/")
-
-	.get(requestHandlers.userGet) 
-
-	.put(requestHandlers.userPut) 
+	.put(requestHandlers.customerPut) 
 
 
-router.route("/currency/")
+router.route("/customerpurchases")
 
-	.get(requestHandlers.currencyGet) 
+	.get(requestHandlers.customerPurchasesGet) 
+
+	.post(requestHandlers.customerPurchasesPost) 
 
 
-router.route("/products/providers")
+router.route("/products/providerlogos/:file")
 
-	.get(requestHandlers.productsProvidersGet) 
+	.get(requestHandlers.productsProviderlogosLoadImage) 
+
+
+router.route("/products/currency")
+
+	.get(requestHandlers.productsCurrencyGet) 
 
 
 router.route("/products/images/:file")
@@ -51,9 +51,9 @@ router.route("/products/")
 	.get(requestHandlers.productsGet) 
 
 
-router.route("/products/logos/:file")
+router.route("/products/technicalsheets/:file")
 
-	.get(requestHandlers.productsLogosLoadImage) 
+	.get(requestHandlers.productsTechnicalsheetsDownload) 
 
 	
 
